@@ -63,13 +63,13 @@ ssh root@1.201.19.192 -p 12345
 
 ```bash
 # 배포 스크립트 다운로드 및 실행
-curl -fsSL https://raw.githubusercontent.com/YOUR_USERNAME/exovisions2/main/deploy.sh -o deploy.sh
+curl -fsSL https://raw.githubusercontent.com/trevi00/exovisions2/master/deploy.sh -o deploy.sh
 chmod +x deploy.sh
 ./deploy.sh
 ```
 
 **스크립트 실행 중 입력 사항:**
-1. GitHub Repository URL: `https://github.com/YOUR_USERNAME/exovisions2.git`
+1. GitHub Repository URL: `https://github.com/trevi00/exovisions2.git`
 2. 데이터베이스 비밀번호: (강력한 비밀번호 입력)
 3. Grafana 관리자 비밀번호: (강력한 비밀번호 입력)
 
@@ -147,7 +147,7 @@ ufw --force enable
 ```bash
 # 프로젝트 클론
 cd /opt
-git clone https://github.com/YOUR_USERNAME/exovisions2.git
+git clone https://github.com/trevi00/exovisions2.git
 cd exovisions2
 
 # 환경 변수 설정

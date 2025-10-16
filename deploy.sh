@@ -61,8 +61,8 @@ fi
 
 # 프로젝트 클론
 echo -e "${GREEN}[7/10] GitHub에서 프로젝트 다운로드 중...${NC}"
-echo "GitHub repository URL을 입력하세요 (예: https://github.com/username/exovisions2.git):"
-read REPO_URL
+REPO_URL="https://github.com/trevi00/exovisions2.git"
+echo "Repository: $REPO_URL"
 git clone $REPO_URL
 
 cd exovisions2
