@@ -8,12 +8,12 @@ import { Platform } from 'react-native';
 // 환경 변수 (필요시 .env 파일이나 react-native-dotenv로 대체 가능)
 const ENV = {
   development: {
-    apiUrl: 'http://127.0.0.1:8000/api/v1',
+    apiUrl: '/api/v1',  // Nginx 프록시를 통한 상대 경로
     apiTimeout: 30000,
     debug: true,
   },
   production: {
-    apiUrl: process.env.API_URL || 'https://api.exovisions.com/api/v1',
+    apiUrl: '/api/v1',  // Nginx 프록시를 통한 상대 경로
     apiTimeout: 30000,
     debug: false,
   },

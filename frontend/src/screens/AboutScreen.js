@@ -144,7 +144,7 @@ const AboutScreen = () => {
             <Button
               mode="outlined"
               icon="file-document"
-              onPress={() => openLink('http://127.0.0.1:8000/docs')}
+              onPress={() => openLink('/docs')}
               style={styles.linkButton}
             >
               API Documentation
