@@ -12,9 +12,11 @@ psycopg2-binary==2.9.9
 # 머신러닝
 scikit-learn==1.4.0
 lightgbm==4.3.0
+xgboost==2.0.3
 pandas==2.2.0
 numpy==1.26.3
 scipy==1.12.0
+optuna==3.5.0
 
 # 유틸리티
 pydantic==2.5.3
