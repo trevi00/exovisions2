@@ -1,8 +1,10 @@
-# Multi-stage build for React Native Web Frontend
-# Stage 1: Builder
-FROM node:18-alpine as builder
+# Dockerfile for Expo + React Native Web Frontend
+FROM node:18-alpine
 
 WORKDIR /app
+
+# Install expo-cli globally
+RUN npm install -g expo-cli
 
 # Copy package files
 COPY package*.json ./
@@ -13,37 +15,15 @@ RUN npm install --legacy-peer-deps
 # Copy source code
 COPY . .
 
-# Build the application
-RUN npm run build
-
-# Stage 2: Production with Nginx
-FROM nginx:alpine
-
-# Copy custom nginx config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Copy built files from builder
-COPY --from=builder /app/build /usr/share/nginx/html
-
-# Create non-root user for nginx
-RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nextjs -u 1001 && \
-    chown -R nextjs:nodejs /usr/share/nginx/html && \
-    chown -R nextjs:nodejs /var/cache/nginx && \
-    chown -R nextjs:nodejs /var/log/nginx && \
-    chown -R nextjs:nodejs /etc/nginx/conf.d && \
-    touch /var/run/nginx.pid && \
-    chown -R nextjs:nodejs /var/run/nginx.pid
-
-# Switch to non-root user
-USER nextjs
-
 # Expose port
 EXPOSE 3000
 
+# Set environment variable for web platform
+ENV EXPO_DEVTOOLS_LISTEN_ADDRESS=0.0.0.0
+
 # Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
     CMD wget --no-verbose --tries=1 --spider http://localhost:3000/ || exit 1
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start Expo web server
+CMD ["npx", "expo", "start", "--web", "--port", "3000"]
