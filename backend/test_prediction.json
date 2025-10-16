@@ -1,0 +1,15 @@
+{
+  "features": {
+    "orbital_period": 3.5,
+    "transit_duration": 2.5,
+    "transit_depth": 500,
+    "planet_radius": 2.0,
+    "equilibrium_temp": 1200,
+    "insolation": 100,
+    "signal_to_noise": 50,
+    "stellar_temp": 5800,
+    "stellar_logg": 4.5,
+    "stellar_radius": 1.0
+  },
+  "save_result": true
+}

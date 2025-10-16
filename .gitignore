@@ -1,0 +1,23 @@
+# 환경변수 파일
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# 프로젝트별 설정
+backend/.env
+frontend/.env

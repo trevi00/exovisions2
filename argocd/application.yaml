@@ -1,0 +1,59 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: exoplanet-detection
+  namespace: argocd
+  # Finalizer for cascade deletion
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  # Project the application belongs to
+  project: default
+
+  # Source of the application manifests
+  source:
+    # Git repository URL
+    repoURL: https://github.com/YOUR_GITHUB_USERNAME/exovisions2.git
+    targetRevision: HEAD
+    path: k8s
+
+    # Directory plugin to use (optional, for Kustomize/Helm)
+    # directory:
+    #   recurse: true
+
+  # Destination cluster and namespace to deploy to
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: exoplanet
+
+  # Sync policy
+  syncPolicy:
+    # Automated sync
+    automated:
+      # Automatically sync when changes are detected
+      prune: true
+      # Allow automatic syncing even if there are manual changes
+      selfHeal: true
+      # Allow empty namespace (will create if doesn't exist)
+      allowEmpty: false
+
+    # Sync options
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+
+    # Retry policy
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+
+  # Ignore differences in certain fields
+  ignoreDifferences:
+    - group: apps
+      kind: Deployment
+      jsonPointers:
+        - /spec/replicas
