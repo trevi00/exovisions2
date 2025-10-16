@@ -7,6 +7,7 @@ prometheus-fastapi-instrumentator==6.1.0
 # 데이터베이스
 sqlalchemy==2.0.25
 alembic==1.13.1
+psycopg2-binary==2.9.9
 
 # 머신러닝
 scikit-learn==1.4.0
