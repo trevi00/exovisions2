@@ -10,7 +10,7 @@ alembic==1.13.1
 psycopg2-binary==2.9.9
 
 # 머신러닝
-scikit-learn==1.4.0
+scikit-learn==1.7.1
 lightgbm==4.3.0
 xgboost==2.0.3
 pandas==2.2.0
